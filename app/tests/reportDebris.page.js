@@ -10,14 +10,26 @@ class ReportDebrisPage {
     await testController.expect(this.pageSelector.exists).ok();
   }
 
+  async selectDropdownAndTypeOther(testController, dropdownId, textFieldId, text, option = 'Other') {
+    const optionWithText = Selector(dropdownId).find('option').withText(option);
+
+    await testController
+      .click(dropdownId)
+      .click(optionWithText)
+      .typeText(textFieldId, text);
+  }
+
   async submit(testController, text) {
     await this.isDisplayed(testController);
-    await testController.click('#debris-sf1-dropdown');
-    await testController.typeText('#debris-sf1-dropdown-other', text);
-    await testController.click('#debris-sf2-dropdown');
-    await testController.typeText('#debris-sf2-dropdown-other', text);
-    await testController.click('#debris-sf3-dropdown');
-    await testController.typeText('#debris-sf3-dropdown-other', text);
+
+    // For the first dropdown and text field:
+    await this.selectDropdownAndTypeOther(testController, '#debris-sf1-dropdown', '#debris-sf1-dropdown-other', text);
+
+    // For the second dropdown and text field, choosing a different option:
+    // await this.selectDropdownAndTypeOther(testController, '#debris-sf2-dropdown', '#debris-sf2-dropdown-other', text, 'In the shore break');
+
+    // For the third dropdown and text field, choosing a different option:
+    // await this.selectDropdownAndTypeOther(testController, '#debris-sf3-dropdown', '#debris-sf3-dropdown-other', text, 'loose on the shore but caught in the vegetation line');
 
     await testController.click('#debris-submit');
   }

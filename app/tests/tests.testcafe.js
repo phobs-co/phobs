@@ -17,13 +17,16 @@ test('Test that landing page shows up', async (testController) => {
 });
 
 test('Test that signin and signout work', async (testController) => {
-  // eslint-disable-next-line no-console
-  console.log('running test');
   await navBar.gotoSignInPage(testController);
   await signinPage.signin(testController, credentials.username, credentials.password);
-  await navBar.gotoReportDebrisPage(testController);
-  await reportDebrisPage.submit(testController, 'test');
   await navBar.isLoggedIn(testController, credentials.username);
   await navBar.logout(testController);
   await signoutPage.isDisplayed(testController);
+});
+
+test('Test report debris', async (testController) => {
+  // eslint-disable-next-line no-console
+  console.log('running debris report test');
+  await navBar.gotoReportDebrisPage(testController);
+  await reportDebrisPage.submit(testController, 'test');
 });
