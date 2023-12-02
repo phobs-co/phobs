@@ -142,6 +142,8 @@ const AnalysisItems = ({ event, samples }) => {
       </Card.Body>
     </Card>
   ) : <LoadingSpinner />);
+
+  // 👋
 };
 
 AnalysisItems.propTypes = {
