@@ -57,7 +57,7 @@ const SignInOrganization = () => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField id="signin-form-username" name="username" placeholder="Username" />
+                <TextField id="signin-form-email" name="email" placeholder="Email" />
                 <TextField id="signin-form-password" name="password" placeholder="Password" type="password" />
                 <ErrorsField />
                 <SubmitField id="signin-form-submit" />
