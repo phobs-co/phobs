@@ -1,11 +1,11 @@
 {
   "defaultAccounts": [
-    { "username": "admin", "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "username": "john", "email": "john@foo.com", "password": "changeme" }
+    { "username": "admin@foo.com", "email": "admin@foo.com", "password": "changeme", "role": "admin" },
+    { "username": "john@foo.com", "email": "john@foo.com", "password": "changeme" }
   ],
 
   "defaultAccountsOrganizations" : [
-    { "username": "orgUser1", "organization": "MyOrganization", "email": "org@foo.com", "password": "changeme" }
+    { "username": "org@foo.com", "email": "org@foo.com", "password": "changeme", "role": "org", "organization": "MyOrganization" }
   ],
 
   "defaultProfile" : [

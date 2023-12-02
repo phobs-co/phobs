@@ -17,7 +17,6 @@ const SignUpOrganization = ({ location }) => {
   const [redirectToReferer, setRedirectToRef] = useState(false);
 
   const schema = new SimpleSchema({
-    username: String,
     organization: String,
     email: String,
     password: String,
@@ -26,7 +25,8 @@ const SignUpOrganization = ({ location }) => {
 
   /* Handle SignUp submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (doc) => {
-    const { username, organization, email, password } = doc;
+    const { organization, email, password } = doc;
+    const username = email;
     Accounts.createUser({ username, organization, email, password }, (err) => {
       if (err) {
         setError(err.reason);
@@ -62,7 +62,6 @@ const SignUpOrganization = ({ location }) => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField name="username" placeholder="Username" type="username" />
                 <TextField name="organization" placeholder="Organization Name" type="organization" />
                 <TextField name="email" placeholder="E-mail address" />
                 <TextField name="password" placeholder="Password" type="password" />
