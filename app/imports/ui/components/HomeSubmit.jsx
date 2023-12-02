@@ -8,7 +8,7 @@ const HomeSubmit = () => {
     navigate('/report');
   };
   return (
-    <Container className="d-grid pt-5" lg={5}>
+    <Container id="homeSubmit" className="d-grid pt-5" lg={5}>
       <Row xs={1} sm={1} md={2}>
         <Col className="pb-5 text-end">
           <Image fluid src="images/AdobeStock_625815628_Preview.png" alt="AdobeStock_625815628_Preview.jpeg" width={500} />
@@ -21,7 +21,7 @@ const HomeSubmit = () => {
             Someone will come to pick it up for free! Every pound of trash thrown away is a ocean life is saved for another day. And remember don&apos;t touch the turtles!
           </p>
           <div className="d-grid gap-2">
-            <Button onClick={ReportDebrisButton} variant="danger">
+            <Button id="report-debris-button" onClick={ReportDebrisButton} variant="danger">
               Report Debris
             </Button>
           </div>

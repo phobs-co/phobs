@@ -21,6 +21,10 @@ class NavBar {
     await testController.click('#login-dropdown-sign-in');
   }
 
+  async gotoReportDebrisPage(testController) {
+    await testController.click('#report-debris-button');
+  }
+
   /** Check that the specified user is currently logged in. */
   async isLoggedIn(testController, username) {
     const visible = await Selector('#basic-navbar-nav').visible;
