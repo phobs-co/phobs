@@ -15,7 +15,7 @@ const SignInOrganization = () => {
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
   const schema = new SimpleSchema({
-    username: String,
+    email: String,
     password: String,
   });
   const bridge = new SimpleSchema2Bridge(schema);
@@ -23,8 +23,8 @@ const SignInOrganization = () => {
   // Handle Signin submission using Meteor's account mechanism.
   const submit = (doc) => {
     // console.log('submit', doc, redirect);
-    const { username, password } = doc;
-    Meteor.loginWithPassword(username, password, (err) => {
+    const { email, password } = doc;
+    Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         setError(err.reason);
       } else if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
@@ -57,7 +57,7 @@ const SignInOrganization = () => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
-                <TextField id="signin-form-username" name="username" placeholder="Username" />
+                <TextField id="signin-form-email" name="email" placeholder="E-mail address" />
                 <TextField id="signin-form-password" name="password" placeholder="Password" type="password" />
                 <ErrorsField />
                 <SubmitField id="signin-form-submit" />
