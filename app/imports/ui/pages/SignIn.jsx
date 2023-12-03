@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -36,6 +37,9 @@ const SignIn = () => {
   // Render the signin form.
   // console.log('render', error, redirect);
   // if correct authentication, redirect to page instead of login screen
+  if (redirect && Roles.userIsInRole(Meteor.userId(), 'org')) {
+    return (<Navigate to="/landing-organization" />);
+  }
   if (redirect) {
     return (<Navigate to="/landing" />);
   }

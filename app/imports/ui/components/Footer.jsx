@@ -18,8 +18,6 @@ const Footer = () => (
       <Row>
         <Col className="text-center">
           <h4>Temporary Links</h4>
-          <a href="/organization-signin">Organization Sign In</a>
-          <br />
           <a href="/organization-signup">Organization Sign Up</a>
         </Col>
       </Row>
