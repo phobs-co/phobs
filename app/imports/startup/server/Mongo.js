@@ -95,7 +95,6 @@ Meteor.methods({
     check(eventId, String);
     check(sampleIds, [String]);
     check(protocol, (Number));
-    protocol && check(protocol, Number);
 
     const existingEvent = Events.collection.findOne(eventId);
     if (!existingEvent) {
@@ -104,7 +103,7 @@ Meteor.methods({
 
     Events.collection.update(eventId, { $addToSet: { sampleIds: { $each: sampleIds } } });
     Events.collection.update(eventId, { $set: { hasSamples: true } });
-    protocol && Events.collection.update(eventId, { $set: { protocol: protocol } });
+    Events.collection.update(eventId, { $set: { protocol: protocol } });
   },
 });
 
