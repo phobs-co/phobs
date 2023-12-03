@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import OtherSubmit from '../components/OtherSubmit';
+import OtherSubmit from './OtherSubmit';
 
 const DebrisMap = () => (
   <div className="d-flex flex-column min-vh-100 text-center">

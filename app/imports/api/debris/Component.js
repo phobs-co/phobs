@@ -91,8 +91,6 @@ class ComponentsCollection {
         type: String,
         optional: true,
       },
-      name: String,
-      owner: String,
 
       event_id: String,
       sample_id: String,

@@ -2,9 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Events } from '../../api/debris/Event.js';
 import { Profiles } from '../../api/profile/Profiles';
-import { Samples } from '../../api/debris/Sample.js';
-import { Subsamples } from '../../api/debris/Subsample.js';
-import { Components } from '../../api/debris/Component.js';
 
 /* eslint-disable no-console */
 const addProfile = (profile) => {
@@ -97,6 +94,7 @@ Meteor.methods({
   'events.linkSamplesWithEvent'(eventId, sampleIds, protocol = null) {
     check(eventId, String);
     check(sampleIds, [String]);
+    check(protocol, (Number));
     protocol && check(protocol, Number);
 
     const existingEvent = Events.collection.findOne(eventId);

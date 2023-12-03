@@ -11,6 +11,7 @@ AWS.config.update({
 const s3 = new AWS.S3();
 // hacc23-photo-storage
 Meteor.methods({
+  // eslint-disable-next-line meteor/audit-argument-checks
   async 'uploadFile'(fileContent, fileName, fileType) {
     const params = {
       Bucket: 'hacc23-photo-storage',

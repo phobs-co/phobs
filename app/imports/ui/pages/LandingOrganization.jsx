@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import UnderConstruction from '../components/UnderConstruction';
 import HomeClosingBanner from '../components/HomeClosingBanner';
 import DebrisMap from '../components/DebrisMap';
 
