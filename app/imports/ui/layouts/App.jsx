@@ -12,7 +12,6 @@ import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
 import Landing from '../pages/Landing';
 import LandingOrganization from '../pages/LandingOrganization';
-import SignInOrganization from '../pages/SignInOrganization';
 import SignUpOrganization from '../pages/SignUpOrganization';
 import MyProfile from '../pages/MyProfile';
 import EditProfile from '../pages/EditProfile';
@@ -42,13 +41,14 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route exact path="/landing" element={<Landing />} />
-          <Route exact path="/organization-landing" element={<LandingOrganization />} />
-          <Route path="/organization-signin" element={<SignInOrganization />} />
           <Route path="/organization-signup" element={<SignUpOrganization />} />
-          <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/report" element={<ReportDebris />} />
+          <Route path="/notauthorized" element={<NotAuthorized />} />
+          <Route path="*" element={<NotFound />} />
+
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/profile/:_id" element={<ProtectedRoute><MyProfile /></ProtectedRoute>} />
           <Route path="/edit/:_id" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
@@ -56,11 +56,12 @@ const App = () => {
           <Route path="/claimed" element={<ProtectedRoute><ListClaimed /></ProtectedRoute>} />
           <Route path="/stored" element={<ProtectedRoute><ListStored /></ProtectedRoute>} />
           <Route path="/distributed" element={<ProtectedRoute><ListDisposed /></ProtectedRoute>} />
+
+          <Route exact path="/landing-organization" element={<OrgProtectedRoute><LandingOrganization /></OrgProtectedRoute>} />
+
           <Route path="/analysis" element={<AdminProtectedRoute ready={ready}><ListAnalyze /></AdminProtectedRoute>} />
           <Route path="/report" element={<ProtectedRoute><ReportDebris /></ProtectedRoute>} />
           <Route path="/detail/:_id" element={<ProtectedRoute><Detail /></ProtectedRoute>} />
-          <Route path="/notauthorized" element={<NotAuthorized />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
@@ -75,6 +76,16 @@ const App = () => {
  */
 const ProtectedRoute = ({ children }) => {
   const isLogged = Meteor.userId() !== null;
+  return isLogged ? children : <Navigate to="/signin" />;
+};
+
+/*
+ * OrgProtectedRoute (see React Router v6 sample)
+ * Checks for Meteor login and role before routing to the requested page, otherwise goes to signin page.
+ * @param {any} { component: Component, ...rest }
+ */
+const OrgProtectedRoute = ({ children }) => {
+  const isLogged = Roles.userIsInRole(Meteor.userId(), 'org');
   return isLogged ? children : <Navigate to="/signin" />;
 };
 
@@ -99,9 +110,16 @@ const AdminProtectedRoute = ({ ready, children }) => {
 ProtectedRoute.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
-
 ProtectedRoute.defaultProps = {
   children: <Landing />,
+};
+
+// Require a component and location to be passed to each OrgProtectedRoute.
+OrgProtectedRoute.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+};
+OrgProtectedRoute.defaultProps = {
+  children: <LandingOrganization />,
 };
 
 // Require a component and location to be passed to each AdminProtectedRoute.
@@ -109,7 +127,6 @@ AdminProtectedRoute.propTypes = {
   ready: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 };
-
 AdminProtectedRoute.defaultProps = {
   ready: false,
   children: <Landing />,
