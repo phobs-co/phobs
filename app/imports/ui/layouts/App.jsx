@@ -56,12 +56,12 @@ const App = () => {
           <Route path="/claimed" element={<ProtectedRoute><ListClaimed /></ProtectedRoute>} />
           <Route path="/stored" element={<ProtectedRoute><ListStored /></ProtectedRoute>} />
           <Route path="/distributed" element={<ProtectedRoute><ListDisposed /></ProtectedRoute>} />
+          <Route path="/report" element={<ProtectedRoute><ReportDebris /></ProtectedRoute>} />
+          <Route path="/detail/:_id" element={<ProtectedRoute><Detail /></ProtectedRoute>} />
 
           <Route exact path="/landing-organization" element={<OrgProtectedRoute><LandingOrganization /></OrgProtectedRoute>} />
 
           <Route path="/analysis" element={<AdminProtectedRoute ready={ready}><ListAnalyze /></AdminProtectedRoute>} />
-          <Route path="/report" element={<ProtectedRoute><ReportDebris /></ProtectedRoute>} />
-          <Route path="/detail/:_id" element={<ProtectedRoute><Detail /></ProtectedRoute>} />
         </Routes>
         <Footer />
       </div>
