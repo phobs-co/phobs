@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+
 class ReportDebrisPage {
   constructor() {
     this.pageId = '#reportDebris-page';
