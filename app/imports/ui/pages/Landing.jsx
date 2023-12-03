@@ -5,7 +5,7 @@ import HomeSubmit from '../components/HomeSubmit';
 import HomeClosingBanner from '../components/HomeClosingBanner';
 
 const Landing = () => (
-  <Container className="p-1 d-grid">
+  <Container id="landing-page" className="p-1 d-grid">
     <HomeCarousel />
     <HomeSubmit />
     <HomeClosingBanner />

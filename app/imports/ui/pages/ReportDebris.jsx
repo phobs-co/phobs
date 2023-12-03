@@ -249,7 +249,7 @@ const ReportDebris = () => {
   }
 
   return (
-    <Container className="py-3">
+    <Container id="reportDebris-page" className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
           <Col className="text-center"><h2>REPORT MARINE DEBRIS</h2></Col>
@@ -260,11 +260,12 @@ const ReportDebris = () => {
           <AutoForm schema={bridge} onSubmit={submit} ref={fRef}>
             <Card>
               <Card.Body>
-                <SelectField name="type" label="I FOUND/LOCATED THE FOLLOWING" onChange={(value) => handleSelectChange1(value)} value={type} />
+                <SelectField id="debris-sf1-dropdown" name="type" label="I FOUND/LOCATED THE FOLLOWING" onChange={(value) => handleSelectChange1(value)} value={type} />
                 {showTextField1 && (
                   <Form.Group controlId="otherDescription">
                     <Form.Label>Please enter your own description of the type of debris found:</Form.Label>
                     <Form.Control
+                      id="debris-sf1-dropdown-other"
                       type="text"
                       placeholder="Other - please explain"
                       value={customTypeDescription}
@@ -272,11 +273,12 @@ const ReportDebris = () => {
                     />
                   </Form.Group>
                 )}
-                <SelectField name="located" label="THIS DEBRIS IS LOCATED" onChange={(value) => handleSelectChange2(value)} value={located} />
+                <SelectField id="debris-sf2-dropdown" name="located" label="THIS DEBRIS IS LOCATED" onChange={(value) => handleSelectChange2(value)} value={located} />
                 {showTextField2 && (
                   <Form.Group controlId="other">
                     <Form.Label>If located offshore, enter latitude and longitude (i.e. 21.3161 -157.8906) or provide a position description and any information on currents and winds that could help in relocating the debris.:</Form.Label>
                     <Form.Control
+                      id="debris-sf2-dropdown-other"
                       type="text"
                       placeholder="Other - Please explain"
                       value={customLocatedDescription}
@@ -285,13 +287,14 @@ const ReportDebris = () => {
                   </Form.Group>
                 )}
 
-                <SelectField name="describe" label="THE DEBRIS IS BEST DESCRIBED AS:" onChange={(value) => handleSelectChange3(value)} value={describe} />
+                <SelectField id="debris-sf3-dropdown" name="describe" label="THE DEBRIS IS BEST DESCRIBED AS:" onChange={(value) => handleSelectChange3(value)} value={describe} />
                 {showTextField3 && (
                   <Form.Group controlId="other">
                     <Form.Label>
                       Enter custom description of the debris:
                     </Form.Label>
                     <Form.Control
+                      id="debris-sf3-dropdown-other"
                       type="text"
                       placeholder="Other - Please describe"
                       value={customDescriptionDescription}
@@ -300,7 +303,7 @@ const ReportDebris = () => {
                   </Form.Group>
                 )}
 
-                <SelectField name="island" label="If on land or in the nearshore waters - indicate which island" />
+                <SelectField id="debris-sf4-image" name="island" label="If on land or in the nearshore waters - indicate which island" />
                 <input
                   type="file"
                   accept="image/*"
@@ -317,7 +320,7 @@ const ReportDebris = () => {
                 </Button>
                 <SubmitField style={{ display: 'none' }} />
                 <div style={{ paddingTop: 10 }}>
-                  <Button type="submit" variant="primary" disabled={isSubmitting}>
+                  <Button id="debris-submit" type="submit" variant="primary" disabled={isSubmitting}>
                     {isSubmitting ? (
                       <>
                         <Spinner
