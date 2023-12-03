@@ -2,7 +2,7 @@ import { landingPage } from './landing.page';
 import { signinPage } from './signin.page';
 import { signoutPage } from './signout.page';
 import { navBar } from './navbar.component';
-import { reportDebrisPage} from './reportDebris.page';
+import { reportDebrisPage } from './reportDebris.page';
 
 /* global fixture:false, test:false */
 
